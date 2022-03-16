@@ -1,5 +1,7 @@
 package com.mycompany.os.project;
 
+import java.util.Random;
+
 public class Process extends Thread{
 
     //-------------------CREACION DE VARIABLES---------------------
@@ -10,6 +12,7 @@ public class Process extends Thread{
     private int process_time;
     private int missing_time;
     private boolean process_status;
+    private int instructions;
     //---------------------CONSTRUCTOR, GETTERS Y SETTERS
     public Process(int start_time, int process_time, int missing_time, int process_id,String process_name, int process_priority, boolean process_status){
         this.start_time = start_time;
@@ -19,6 +22,9 @@ public class Process extends Thread{
         this.process_name = process_name;
         this.process_priority = process_priority;
         this.process_status = process_status;
+    }
+    public Process(){
+        
     }
 
     public void setProcess_status(boolean process_status) {
@@ -64,6 +70,9 @@ public class Process extends Thread{
     public boolean getProcess_status(){
         return process_status;
     }
+    public int getProcess_instructions(){
+        return instructions;
+    }
     //----------------------------METODO RUN-----------------------------
     @Override
     public void run(){
@@ -72,6 +81,13 @@ public class Process extends Thread{
             System.out.println("Process => " + process_name + " id => " + process_id + "Running, Time running => " + i);
         }
         missing_time = missing_time - i;
+    }
+    
+    public void NewProcess(Process p){
+        Random random = new Random();
+        p.process_time = (int) Math.floor(Math.random()*(2-10+1)+10);
+        p.instructions = p.process_time;
+
     }
 
 
